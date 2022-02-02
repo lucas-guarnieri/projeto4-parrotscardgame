@@ -3,6 +3,8 @@ body {
     background-color: #EEF9BF;
 }
 
+
+/*MAIN BODY*/
 main {
     display: flex;
     flex-direction: column;
@@ -22,6 +24,50 @@ h1 {
     background-color: rgb(240, 240, 240, 0.4);
 }
 
+
+/*CARDS*/
+
+.card {
+    width: 200px;
+    height: 250px;
+    position: relative;
+}
+
+.face {
+    width: 100%;
+    height: 100%;
+    background-color: #A7E9AF;
+    border-radius: 10px;
+    box-shadow: 1px 1px 1px rgba(0,0,0,.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    backface-visibility: hidden;
+    transition: all .5s;
+    transform-style: preserve-3d;
+}
+
+.back-face {
+    transform: rotateY(180deg);
+}
+
+.card:hover .back-face {
+    transform: rotateY(0deg);
+}
+
+.card:hover .front-face {
+    transform: rotateY(-180deg);
+}
+    
+    
+
+    
+
+
+
+
+/*MOBILE VERSION*/
 @media (max-width: 614px){
 
     h1{
