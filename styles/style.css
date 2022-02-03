@@ -22,14 +22,15 @@ h1 {
     width: 700px;/*  test  */
     height: 700px;/*  test  */
     background-color: rgb(240, 240, 240, 0.4);
+    display: flex;
 }
 
 
 /*CARDS*/
 
 .card {
-    width: 200px;
-    height: 250px;
+    width: 117px;
+    height: 146px;
     position: relative;
 }
 
@@ -48,6 +49,10 @@ h1 {
     transform-style: preserve-3d;
 }
 
+.face img{
+    width: 80%;
+    height: 70%;
+}
 .back-face {
     transform: rotateY(180deg);
 }
