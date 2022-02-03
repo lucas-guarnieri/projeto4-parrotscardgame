@@ -19,10 +19,12 @@ h1 {
 }
 
 .gameBoard{
-    width: 700px;/*  test  */
-    height: 700px;/*  test  */
-    background-color: rgb(240, 240, 240, 0.4);
+    width: 80vw;
+    margin-bottom: 100px;
     display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-evenly;
 }
 
 
@@ -31,6 +33,7 @@ h1 {
 .card {
     width: 117px;
     height: 146px;
+    margin: 17px;
     position: relative;
 }
 
