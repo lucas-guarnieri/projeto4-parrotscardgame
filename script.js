@@ -1,5 +1,3 @@
-/*GLOBAL VARIABLES*/
-
 const imageList = [
     "bobrossparrot.gif",
     "explodyparrot.gif",
@@ -34,10 +32,10 @@ function createRandomList(){
         randomImageList.push(imageList[i]);
         randomImageList.push(imageList[i]);
     }
-    randomImageList =randomImageList.sort(comparador); // Após esta linha, a minhaArray estará embaralhada
+    randomImageList =randomImageList.sort(randomizer); // Após esta linha, a minhaArray estará embaralhada
 }
 
-function comparador() { 
+function randomizer() { 
 	return Math.random() - 0.5; 
 }
 
@@ -46,15 +44,22 @@ function createCards(){
     for (let i = 0; i < randomImageList.length; i++){
         gameBoard.innerHTML += `
         <div class="card" data-identifier="card">
-            <div class="front-face face" data-identifier="front-face">
+            <div class="front-face face" onclick="turnCard()" data-identifier="front-face">
                 <img src="/images/front.png">
             </div>
-            <div class="back-face face" data-identifier="back-face">
-                <img src="/images/${randomImageList[i]}">
+            <div class="back-face face" onclick="turnCard()" data-identifier="back-face">
+                <img src="/images/${randomImageList[i]}" alt = 'gif of slack parrot'">
             </div>
         </div>
         `
     }
+}
+//mudar onclick para front-face e back-face
+function turnCard(){
+    const frontFace = document.querySelector(".front-face");
+    frontFace.classList.add("turn-front");
+    const backFace = document.querySelector(".back-face");
+    frontFace.classList.add("turn-back");
 }
 
 
