@@ -43,23 +43,22 @@ function createCards(){
     const gameBoard = document.querySelector(".gameBoard");
     for (let i = 0; i < randomImageList.length; i++){
         gameBoard.innerHTML += `
-        <div class="card" data-identifier="card">
-            <div class="front-face face" onclick="turnCard()" data-identifier="front-face">
+        <div class="card" onclick="turnCard(this)" data-identifier="card">
+            <div class="front-face face" data-identifier="front-face">
                 <img src="/images/front.png">
             </div>
-            <div class="back-face face" onclick="turnCard()" data-identifier="back-face">
+            <div class="back-face face"  data-identifier="back-face">
                 <img src="/images/${randomImageList[i]}" alt = 'gif of slack parrot'">
             </div>
         </div>
         `
     }
 }
-//mudar onclick para front-face e back-face
-function turnCard(){
-    const frontFace = document.querySelector(".front-face");
-    frontFace.classList.add("turn-front");
-    const backFace = document.querySelector(".back-face");
-    frontFace.classList.add("turn-back");
+
+function turnCard(card) {
+    card.querySelector(".front-face").classList.add("turn-front");
+    card.querySelector(".back-face").classList.add("turn-back");
 }
+
 
 
