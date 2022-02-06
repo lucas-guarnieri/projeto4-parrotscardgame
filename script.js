@@ -111,6 +111,12 @@ function cleanBoard(){
 function victoryAchieved(){
     alert(`Fim de jogo. Sua pontuação:\nN° de turnos: ${turnCounter}\nTempo: ${timeCounter/1000} segundos`)
     clearInterval(idInterval);
+    let playAgain = prompt("Gostaria de jogar novamente? (s/n)");
+    if (playAgain === "s"){
+        document.location.reload();
+    }else{
+        alert("Obrigado por jogar!")
+    }
 }
 
 function startTimer(){
@@ -124,6 +130,5 @@ function increaseTimer(){
 
 
 
-// if (openedCards[0].isEqualNode(openedCards[1])){
 
 
