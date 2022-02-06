@@ -89,10 +89,6 @@ function turnCard(card) {
             }
 
         }
-    console.log(openedCards.length +  " tamanho da lista");
-    console.log("contador vitoria" + victoryCont);
-    console.log("contador turnos" + turnCounter);
-    console.log(isClickAvailable);
     }
     firstClick = false;
 }
