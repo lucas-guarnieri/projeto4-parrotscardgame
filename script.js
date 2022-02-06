@@ -12,8 +12,11 @@ let numOfCards = null;
 let randomImageList = [];
 let openedCards = [];
 let isClickAvailable = true;
+let firstClick = true;
 let turnCounter = 0;
 let victoryCont = 0;
+let timeCounter = 0;
+let idInterval;
 
 setNumOfCards();
 createRandomList();
@@ -59,6 +62,9 @@ function createCards(){
 }
 
 function turnCard(card) {
+    if (firstClick){
+        startTimer();
+    }
     if (isClickAvailable && !card.classList.contains("locked")){
         card.querySelector(".front-face").classList.add("turn-front");
         card.querySelector(".back-face").classList.add("turn-back");
@@ -88,6 +94,7 @@ function turnCard(card) {
     console.log("contador turnos" + turnCounter);
     console.log(isClickAvailable);
     }
+    firstClick = false;
 }
 
 function cleanBoard(){
@@ -102,10 +109,18 @@ function cleanBoard(){
 }
 
 function victoryAchieved(){
-    alert(`Fim de jogo. Sua pontuação:\nN° de turnos: ${turnCounter}`)
+    alert(`Fim de jogo. Sua pontuação:\nN° de turnos: ${turnCounter}\nTempo: ${timeCounter/1000} segundos`)
+    clearInterval(idInterval);
 }
 
+function startTimer(){
+    idInterval = setInterval(increaseTimer, 100);
+}
 
+function increaseTimer(){
+    timeCounter += 100;
+    document.querySelector(".timer").innerHTML = timeCounter/1000 + "s";
+}
 
 
 
