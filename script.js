@@ -1,18 +1,11 @@
 const imageList = [
-    "<img src='/images/bobrossparrot.gif' type='bobRoss' alt = 'gif of bob ross parrot'></img>",
-    "<img src='/images/explodyparrot.gif' id='explosion' alt = 'gif of exploding parrot'></img>",
-    "<img src='/images/fiestaparrot.gif' id='fiesta' alt = 'gif of parrot in a sombrero'></img>",
-    "<img src='/images/metalparrot.gif' id='metal' alt = 'gif of metalhead parrot'></img>",
-    "<img src='/images/revertitparrot.gif' id='saylor' alt = 'gif of a sailor parrot'></img>",
-    "<img src='/images/tripletsparrot.gif' id='triplet' alt = 'gif parrot triplets'></img>",
-    "<img src='/images/unicornparrot.gif' id='unicorn' alt = 'gif of unicor parrot'></img>"
-    /*"bobrossparrot.gif",
-    "explodyparrot.gif",
-    "fiestaparrot.gif",
-    "metalparrot.gif",
-    "revertitparrot.gif",
-    "tripletsparrot.gif",
-    "unicornparrot.gif"*/
+    "<img src='/images/bobrossparrot.gif' alt = 'gif of bob ross parrot'></img>",
+    "<img src='/images/explodyparrot.gif' alt = 'gif of exploding parrot'></img>",
+    "<img src='/images/fiestaparrot.gif' alt = 'gif of parrot in a sombrero'></img>",
+    "<img src='/images/metalparrot.gif' alt = 'gif of metalhead parrot'></img>",
+    "<img src='/images/revertitparrot.gif' alt = 'gif of a sailor parrot'></img>",
+    "<img src='/images/tripletsparrot.gif' alt = 'gif parrot triplets'></img>",
+    "<img src='/images/unicornparrot.gif' alt = 'gif of unicor parrot'></img>"
 ];
 
 let numOfCards = null;
@@ -76,6 +69,11 @@ function turnCard(card) {
             isClickAvailable = false;
             if (openedCards[0].isEqualNode(openedCards[1])){
                 victoryCont += 1;
+                if (victoryCont === numOfCards/2){
+                    setTimeout(() => {
+                        victoryAchieved();
+                    }, 500);
+                }
                 openedCards = [];
                 isClickAvailable = true;
             }else{
@@ -101,6 +99,10 @@ function cleanBoard(){
     openedCards[1].classList.remove("locked");
     openedCards = [];
     isClickAvailable = true;
+}
+
+function victoryAchieved(){
+    alert(`Fim de jogo. Sua pontuação:\nN° de turnos: ${turnCounter}`)
 }
 
 
