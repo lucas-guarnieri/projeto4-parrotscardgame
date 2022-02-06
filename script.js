@@ -1,20 +1,30 @@
 const imageList = [
-    "bobrossparrot.gif",
+    "<img src='/images/bobrossparrot.gif' type='bobRoss' alt = 'gif of bob ross parrot'></img>",
+    "<img src='/images/explodyparrot.gif' id='explosion' alt = 'gif of exploding parrot'></img>",
+    "<img src='/images/fiestaparrot.gif' id='fiesta' alt = 'gif of parrot in a sombrero'></img>",
+    "<img src='/images/metalparrot.gif' id='metal' alt = 'gif of metalhead parrot'></img>",
+    "<img src='/images/revertitparrot.gif' id='saylor' alt = 'gif of a sailor parrot'></img>",
+    "<img src='/images/tripletsparrot.gif' id='triplet' alt = 'gif parrot triplets'></img>",
+    "<img src='/images/unicornparrot.gif' id='unicorn' alt = 'gif of unicor parrot'></img>"
+    /*"bobrossparrot.gif",
     "explodyparrot.gif",
     "fiestaparrot.gif",
     "metalparrot.gif",
     "revertitparrot.gif",
     "tripletsparrot.gif",
-    "unicornparrot.gif"
+    "unicornparrot.gif"*/
 ];
 
 let numOfCards = null;
 let randomImageList = [];
+let openedCards = [];
+let isClickAvailable = true;
+let turnCounter = 0;
+let victoryCont = 0;
 
 setNumOfCards();
 createRandomList();
 createCards();
-
 
 function setNumOfCards(){
     let num = prompt("Com quantas cartas você quer jogar?\nO número de cartas deve ser par e no máximo 14");
@@ -32,7 +42,7 @@ function createRandomList(){
         randomImageList.push(imageList[i]);
         randomImageList.push(imageList[i]);
     }
-    randomImageList =randomImageList.sort(randomizer); // Após esta linha, a minhaArray estará embaralhada
+    randomImageList =randomImageList.sort(randomizer); 
 }
 
 function randomizer() { 
@@ -48,7 +58,7 @@ function createCards(){
                 <img src="/images/front.png">
             </div>
             <div class="back-face face"  data-identifier="back-face">
-                <img src="/images/${randomImageList[i]}" alt = 'gif of slack parrot'">
+                ${randomImageList[i]}
             </div>
         </div>
         `
@@ -56,9 +66,47 @@ function createCards(){
 }
 
 function turnCard(card) {
-    card.querySelector(".front-face").classList.add("turn-front");
-    card.querySelector(".back-face").classList.add("turn-back");
+    if (isClickAvailable && !card.classList.contains("locked")){
+        card.querySelector(".front-face").classList.add("turn-front");
+        card.querySelector(".back-face").classList.add("turn-back");
+        card.classList.add("locked");
+        openedCards.push(card);
+        if (openedCards.length === 2){
+            turnCounter += 1;
+            isClickAvailable = false;
+            if (openedCards[0].isEqualNode(openedCards[1])){
+                victoryCont += 1;
+                openedCards = [];
+                isClickAvailable = true;
+            }else{
+                setTimeout(() => {
+                    cleanBoard();
+                }, 1000);
+            }
+
+        }
+    console.log(openedCards.length +  " tamanho da lista");
+    console.log("contador vitoria" + victoryCont);
+    console.log("contador turnos" + turnCounter);
+    console.log(isClickAvailable);
+    }
 }
 
+function cleanBoard(){
+    openedCards[0].querySelector(".front-face").classList.remove("turn-front");
+    openedCards[0].querySelector(".back-face").classList.remove("turn-back");
+    openedCards[0].classList.remove("locked");
+    openedCards[1].querySelector(".front-face").classList.remove("turn-front");
+    openedCards[1].querySelector(".back-face").classList.remove("turn-back");
+    openedCards[1].classList.remove("locked");
+    openedCards = [];
+    isClickAvailable = true;
+}
+
+
+
+
+
+// if (openedCards[0].isEqualNode(openedCards[1])){
 
 
